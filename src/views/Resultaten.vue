@@ -127,8 +127,9 @@ export default {
     },
     getSubsidies() {
       SubsidieService.matchSubsidies(this.sector, this.thema, this.subsidialeActiviteit, this.minimaleBedrag, this.typeOrganisatie, this.projectlocatie, this.cofinancieren, this.samenwerking)
+          .then(response => response.json())
           .then(response => {
-            this.subsidies = response.data.subsidieList;
+            this.subsidies = response.subsidieList;
             this.subsidies.sort((a, b) => (a.matchingPercentage > b.matchingPercentage) ? 1 : -1)
             this.subsidies.sort((c, d) => (c.knockout > d.knockout) ? 1 : -1)
           });

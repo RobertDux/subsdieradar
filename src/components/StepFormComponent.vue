@@ -499,9 +499,7 @@ export default {
     },
     submit() {
       this.setstorage()
-      this.$router.push(`/resultaten`)
-          .then(response => response.status)
-          .catch(err => console.warn(err));
+      this.$router.push(`/resultaten`);
     }
   }
 }
