@@ -5,6 +5,7 @@ import Resultaten from "@/views/Resultaten";
 import Subsidie from "@/views/Subsidie";
 import Login from "@/views/Login";
 import Profile from "@/views/Profile";
+import Dashboard from "@/views/Dashboard";
 
 const routes = [
     {
@@ -30,6 +31,10 @@ const routes = [
     {
         path: '/profile',
         component: Profile
+    },
+    {
+        path: '/dashboard',
+        component: Dashboard
     }
 ]
 

@@ -15,24 +15,24 @@
         <div class="profiles">
 
           <div class="profile" id="profile-1">
-            <a href="/home" class="profile" id="profile-1">
+            <a href="/dashboard" class="profile" id="profile-1">
             <img src="../assets/avatar.png" alt="Profile 1">
             </a>
-            <h2>Elena</h2>
+            <h2>Erwin</h2>
           </div>
 
           <div class="profile" id="profile-2">
-            <a href="/home" class="profile" id="profile-2">
+            <a href="/dashboard" class="profile" id="profile-2">
             <img src="../assets/avatar.png" alt="Profile 2">
             </a>
-            <h2>Anouk</h2>
+            <h2>Mex</h2>
           </div>
 
           <div class="profile" id="profile-3">
-            <a href="/home" class="profile" id="profile-3">
+            <a href="/dashboard" class="profile" id="profile-3">
             <img src="../assets/avatar.png" alt="Profile 3">
             </a>
-            <h2>Anne</h2>
+            <h2>Soufyan</h2>
           </div>
 
           <div class="profile" id="profile-4">
@@ -89,6 +89,12 @@ main {
   border-radius: 50%; /* Add a border radius of 50% to make the profile images round */
   overflow: hidden; /* Hide any content that overflows the rounded border */
   box-shadow: 0 6px 12px rgb(27 35 43 / 8%), 0 2px 6px rgb(27 35 43 / 20%);
+  transition: .2s ease-in-out 0s;
+}
+
+.profile img:hover {
+  cursor: pointer;
+      transform: translateY(-0.25em);
 }
 
 #profile-4 img{
