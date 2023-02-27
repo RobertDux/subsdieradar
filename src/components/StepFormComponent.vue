@@ -12,6 +12,8 @@
         <li class="samenwerking-li"></li>
       </ul>
     </div>
+
+    
     <!-- <br><br>
     <p>Progress: {{ progress }}%</p> -->
   <form @submit.prevent="submit" class="vragenForm">
@@ -283,7 +285,7 @@
         <option disabled value="">Type organisatie</option>
         <option>Overheid</option>
         <option>Onderwijs</option>
-        <option>mkb</option>
+        <option>MKB</option>
         <option>Groot bedrijf</option>
         <option>Kennisinstellingen</option>
         <option>Stichting</option>
@@ -430,11 +432,15 @@ export default {
       // zet vraag van sessionstorage op null
       if (vraagnummer === 3) {
         this.subsidialeActiviteit = "null";
+        console.log(this.subsidialeActiviteit)
       } else if (vraagnummer === 7) {
         this.cofinancieren = null;
+        console.log(this.cofinancieren)
       } else if (vraagnummer === 8) {
         this.samenwerking = "null";
+        console.log(this.samenwerking)
       }
+      console.log(vraagnummer)
       this.step++;
     },
     nextStep(vraagnummer) {
@@ -499,7 +505,9 @@ export default {
     },
     submit() {
       this.setstorage()
-      this.$router.push(`/resultaten`);
+      this.$router.push(`/resultaten`)
+          .then(response => response.status)
+          .catch(err => console.warn(err));
     }
   }
 }
@@ -638,7 +646,7 @@ section {
   background-color: #6c9fc4;
 }
 #progress-bar {
-  width: 100%;
+  width: 90%;
 }
 .progress-bar{
   display:flex;
@@ -650,12 +658,15 @@ section {
 }
 .progress-bar li{
   display:flex;
+  justify-content: center;
   list-style:none;
   position:relative;
   margin-right:185px;
   margin-top:5px;
 }
 /*before is het bolletje, after is de lijn die de bolletjes verbind*/
+
+
 .progress-bar{
 }
 .progress-bar li::before{
@@ -663,7 +674,7 @@ section {
   position:absolute;
   height:35px;
   width:130px;
-  border-radius:15%;
+  border-radius: 30px;
   border:1px solid grey;
   text-align:center;
   line-height:35px;
@@ -676,11 +687,11 @@ section {
   height:2px;
   width:200px;
   background-color:#f5f7fa;
-  top:12px;
-  right:-80px;
+  top:15px;
+  right:-20px;
 }
 .progress-bar li:active{
-  background-color:green;
+  background-color: #463c95;
   border:none;
   color:green;
 }
@@ -712,10 +723,10 @@ progress-bar li:before{
   content:"Samenwerking";
 }
 .progress-bar li.active:after{
-  background-color:green !important;
+  background-color:#463c95 !important;
 }
 .progress-bar li.active::before{
-  background-color: green;
+  background-color: #463c95;
   border:none;
   color:#fff;
 }

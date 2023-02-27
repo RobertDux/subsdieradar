@@ -23,13 +23,10 @@
 
         <div class="filters">
           <div class="status">
-            <p id="title"><b>Co-financering</b></p>
+            <p id="title"><b>Knock-out</b></p>
             <div class="checkboxes">
-              <input type="checkbox" class="checkmark" id="Ja" name="Ja" value="Ja">
-              <label for="Ja"> Ja</label><br>
-
-              <input type="checkbox" id="Nee" name="Nee" value="Nee">
-              <label for="Nee"> Nee</label><br>
+              <input type="checkbox" class="checkmark" id="Knockout" name="Knockout" value="Knockout">
+              <label for="Knockout"> Verberg</label><br>
             </div>
           </div>
         </div>
@@ -42,30 +39,14 @@
             <h3 id="subsidieNaam" @click="subsidiePagina(subsidie)">{{ subsidie.naam }}</h3>
             <p class="info">
               Locatie: {{ subsidie.locatie }}<br>
-              Bedrag: {{ subsidie.subsidiebedrag }}<br>
-              Eind datum: {{ subsidie.datum_sluit }}<br>
+              Bedrag: €{{ subsidie.subsidiebedrag }}<br>
+              Einddatum: {{ subsidie.datum_sluit }}<br>
             </p><br>
 
-            <div id="appmodal">
-              <button
-                  type="button"
-                  class="btn"
-                  @click="showModal"
-              >
-                Toon matching details
-              </button>
 
-              <Modal v-show="isModalVisible" @close="closeModal">
-                <template v-slot:header>Matching details</template>
-                <template v-slot:body>
-                   {{ subsidie.knockout }}
-                </template>
-              </Modal>
-            </div>
-
-
-            <div class="matchingpercentage">
-              <svg viewBox="0 0 80 80" width="80" height="80" id="circle">
+            <div class="matchbutton">
+              <button type="button" class="btn" @click="showModal">
+                <svg viewBox="0 0 80 80" width="80" height="80" id="circle">
                 <circle class="circle" :class="{
                 circleLightGreen: subsidie.matchingPercentage > 85 && subsidie.matchingPercentage <= 100,
                 circleGreen: subsidie.matchingPercentage >70 && subsidie.matchingPercentage <= 85,
@@ -75,8 +56,97 @@
                 circleRed: subsidie.matchingPercentage > 0 && subsidie.matchingPercentage <= 15,
               }" cx="40" cy="40" r="38"/>
                 {{ subsidie.matchingPercentage }}
-              </svg>
+                </svg>
+              </button>
+              
             </div>
+
+
+
+            
+            <div id="appmodal">
+              <Modal v-show="isModalVisible" @close="closeModal">
+                <template v-slot:header>Matching details</template>
+                <template v-slot:body>
+
+                  <div class="container">
+                  <div class="left-column">
+                    <div class="centered-row">
+                      <svg viewBox="0 0 80 80" width="80" height="80" id="circle">
+                        <circle class="circle" :class="{
+                        circleLightGreen: subsidie.matchingPercentage > 85 && subsidie.matchingPercentage <= 100,
+                        circleGreen: subsidie.matchingPercentage >70 && subsidie.matchingPercentage <= 85,
+                        circleLightOrange: subsidie.matchingPercentage > 50 && subsidie.matchingPercentage <= 70,
+                        circleOrange: subsidie.matchingPercentage > 40 && subsidie.matchingPercentage <= 50,
+                        circleLightRed: subsidie.matchingPercentage > 15 && subsidie.matchingPercentage <= 40,
+                        circleRed: subsidie.matchingPercentage > 0 && subsidie.matchingPercentage <= 15,
+                      }" cx="40" cy="40" r="38"/>
+                        {{ subsidie.matchingPercentage }}
+                        </svg>
+                    </div>
+                  </div>
+                  <div class="right-column">
+                    <div>
+                      <p class="info">
+                        Matching: {{ subsidie.matchingPercentage }}</p>
+                    </div>
+                    
+                    <div>
+                      <p class="info">
+                        Doel: {{ subsidie.doel }}</p>
+                    </div>
+
+                    <div>
+                      <p class="info">
+                        Locatie: {{ subsidie.locatie }}</p>
+                    </div>
+
+                    <div>
+                      <p class="info">
+                        Looptijd: {{ subsidie.looptijdProject }}</p>
+                    </div>
+
+                    <div>
+                      <p class="info">
+                        niveau: {{ subsidie.niveau }}</p>
+                    </div>
+
+                    <div>
+                      <p class="info">
+                        Sector: {{ subsidie.sector }}</p>
+                    </div>
+
+                    <div>
+                      <p class="info">
+                        Subsidie percentage: {{ subsidie.subsidiepercentage }}</p>
+                    </div>
+
+                    <div>
+                      <p class="info">
+                        Themas: {{ subsidie.themas }}</p>
+                    </div>
+
+                    
+                  </div>
+                </div>
+
+                   {{ subsidie.knockout }}
+                </template>
+
+              </Modal>
+            </div>
+
+
+
+            <div class="twobuttons">
+                <button class="bekijkbutton">
+                  Verberg
+                </button>
+
+                <button class="bekijkbutton" @click="subsidiePagina(subsidie)">
+                  Bekijk
+                </button>
+              </div>
           </div>
         </div>
       </div>
@@ -127,11 +197,12 @@ export default {
     },
     getSubsidies() {
       SubsidieService.matchSubsidies(this.sector, this.thema, this.subsidialeActiviteit, this.minimaleBedrag, this.typeOrganisatie, this.projectlocatie, this.cofinancieren, this.samenwerking)
-          .then(response => response.json())
           .then(response => {
-            this.subsidies = response.subsidieList;
+            console.log(response)
+            this.subsidies = response.data.subsidieList;
             this.subsidies.sort((a, b) => (a.matchingPercentage > b.matchingPercentage) ? 1 : -1)
             this.subsidies.sort((c, d) => (c.knockout > d.knockout) ? 1 : -1)
+            console.log(this.subsidies)
           });
     },
     subsidiePagina(sub) {
@@ -214,7 +285,56 @@ main .header {
   text-align: center;
 }
 
-#circle {
+.twobuttons {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.bekijkbutton {
+  width: 50%;
+  height: 40px;
+  background: rgba(175, 169, 223, 1);
+  border-radius: 10px;
+  border: 0;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  outline: 0;
+  text-align: center;
+  box-shadow: 0 6px 12px rgb(27 35 43 / 8%), 0 2px 6px rgb(27 35 43 / 20%);
+  font-weight: bold;
+}
+
+.matchbutton {
+  display: flex;
+  justify-content: end;
+  margin-top: -50px;
+}
+
+.btn {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 10px;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+}
+
+.left-column {
+  align-items: center;
+  justify-content: center;
+}
+
+.right-column {
+  display: grid;
+  grid-template-rows: repeat(8, 1fr);
 }
 .circle {
   box-shadow: 27px 27px 77px #bababa,

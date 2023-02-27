@@ -17,9 +17,7 @@
 
         <section class="modal-body">
           <slot name="body">
-            body
           </slot>
-          <img src="../assets/placeholder.png" alt="">
         </section>
 
         <footer class="modal-footer">
@@ -68,6 +66,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
 }
 
 .modal {
@@ -76,7 +75,8 @@ export default {
   display: flex;
   flex-direction: column;
   width: 50%;
-  height: 55vh;
+  height: 57vh;
+  border-radius: 20px;
 }
 
 .modal-header,
@@ -92,16 +92,18 @@ export default {
   justify-content: space-between;
 }
 
+
 .modal-footer {
   border-top: 1px solid #eeeeee;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .modal-body {
   color: black;
   position: relative;
-  padding: 20px 10px;
+  padding: 30px;
 }
 
 .btn-close {
@@ -109,18 +111,21 @@ export default {
   top: 0;
   right: 0;
   border: none;
-  font-size: 20px;
+  font-size: 30px;
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
   color: #463c95;
   background: transparent;
+  
 }
 
 .btn-green {
   color: white;
   background: #463c95;
   border: 1px solid #463c95;
-  border-radius: 2px;
+  border-radius: 30px;
+  height: 50px;
+  width: 50%;
 }
 </style>
