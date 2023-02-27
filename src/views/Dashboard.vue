@@ -281,7 +281,7 @@ h2 {
   background-color: white;
   width: 50%;
   padding-left: 20px;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   border-radius: 40px;
   border: 0;
@@ -414,7 +414,7 @@ h2 {
 
       .rowright {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         align-items: flex-end;
       }
 

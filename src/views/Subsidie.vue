@@ -81,30 +81,30 @@ export default {
   methods: {
     init() {
       const subsidieNaam = this.$route.params.id;
-      SubsidieService.getSubsidie(subsidieNaam).then(
-          response => {
-            this.afkortingen = response.data.afkortingen;
-            this.beoordeling_tender = response.data.beoordeling_tender;
-            this.bijzonderheid= response.data.bijzonderheid,
-            this.datum_open= response.data.datum_open,
-            this.datum_sluit= response.data.datum_sluit,
-            this.doel= response.data.doel,
-            this.locatie= response.data.locatie,
-            this.looptijdProject_jaren= response.data.looptijdProject_jaren,
-            this.naam = response.data.naam,
-            this.niveau= response.data.niveau,
-            this.samenwerking= response.data.samenwerking,
-            this.soort_organisatie= response.data.soort_organisatie,
-            this.subsidiabele_activiteiten= response.data.subsidiabele_activiteiten,
-            this.subsidiebedrag_max= response.data.subsidiebedrag_max,
-            this.subsidiebedrag_min= response.data.subsidiebedrag_min,
-            this.subsidiepercentage_max= response.data.subsidiepercentage_max,
-            this.subsidiepercentage_min= response.data.dosubsidiepercentage_min,
-            this.subsidieverstrekker= response.data.subsidieverstrekker,
-            this.themas= response.data.themas,
-            this.totaal_budget= response.data.totaal_budget,
-            this.type_samenwerking= response.data.type_samenwerking
-            console.log(response.data);
+      SubsidieService.getSubsidie(subsidieNaam)
+        .then(response => response.json())  
+        .then(response => {
+            this.afkortingen = response.afkortingen;
+            this.beoordeling_tender = response.beoordeling_tender;
+            this.bijzonderheid= response.bijzonderheid,
+            this.datum_open= response.datum_open,
+            this.datum_sluit= response.datum_sluit,
+            this.doel= response.doel,
+            this.locatie= response.locatie,
+            this.looptijdProject_jaren= response.looptijdProject_jaren,
+            this.naam = response.naam,
+            this.niveau= response.niveau,
+            this.samenwerking= response.samenwerking,
+            this.soort_organisatie= response.soort_organisatie,
+            this.subsidiabele_activiteiten= response.subsidiabele_activiteiten,
+            this.subsidiebedrag_max= response.subsidiebedrag_max,
+            this.subsidiebedrag_min= response.subsidiebedrag_min,
+            this.subsidiepercentage_max= response.subsidiepercentage_max,
+            this.subsidiepercentage_min= response.dosubsidiepercentage_min,
+            this.subsidieverstrekker= response.subsidieverstrekker,
+            this.themas= response.themas,
+            this.totaal_budget= response.totaal_budget,
+            this.type_samenwerking= response.type_samenwerking
           }
       );
     },

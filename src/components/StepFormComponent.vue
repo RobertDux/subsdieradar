@@ -432,15 +432,11 @@ export default {
       // zet vraag van sessionstorage op null
       if (vraagnummer === 3) {
         this.subsidialeActiviteit = "null";
-        console.log(this.subsidialeActiviteit)
       } else if (vraagnummer === 7) {
         this.cofinancieren = null;
-        console.log(this.cofinancieren)
       } else if (vraagnummer === 8) {
         this.samenwerking = "null";
-        console.log(this.samenwerking)
       }
-      console.log(vraagnummer)
       this.step++;
     },
     nextStep(vraagnummer) {
@@ -505,9 +501,7 @@ export default {
     },
     submit() {
       this.setstorage()
-      this.$router.push(`/resultaten`)
-          .then(response => response.status)
-          .catch(err => console.warn(err));
+      this.$router.push(`/resultaten`);
     }
   }
 }

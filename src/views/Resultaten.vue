@@ -197,12 +197,11 @@ export default {
     },
     getSubsidies() {
       SubsidieService.matchSubsidies(this.sector, this.thema, this.subsidialeActiviteit, this.minimaleBedrag, this.typeOrganisatie, this.projectlocatie, this.cofinancieren, this.samenwerking)
-          .then(response => {
-            console.log(response)
-            this.subsidies = response.data.subsidieList;
+        .then(response => response.json())    
+        .then(response => {
+            this.subsidies = response.subsidieList;
             this.subsidies.sort((a, b) => (a.matchingPercentage > b.matchingPercentage) ? 1 : -1)
             this.subsidies.sort((c, d) => (c.knockout > d.knockout) ? 1 : -1)
-            console.log(this.subsidies)
           });
     },
     subsidiePagina(sub) {
@@ -310,7 +309,7 @@ main .header {
 
 .matchbutton {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-top: -50px;
 }
 

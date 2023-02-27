@@ -1,17 +1,22 @@
-import axios from "axios";
-
 class SubsidieService {
+    constructor() {
+        this.apiEndpoint = process.env.VUE_APP_API_ENDPOINT;
+    }
+
     getSubsidies() {
-        return axios.get('http://localhost:8081/subsidie');
+        return fetch(this.apiEndpoint + '/subsidie');
     }
 
     getSubsidie(subsidie) {
-        return axios.get(`http://localhost:8081/subsidie/${subsidie}`);
+        return fetch(this.apiEndpoint + `/subsidie/${subsidie}`);
     }
 
     matchSubsidies(sector, thema, subsidialeActiviteit, minimaleBedrag, typeOrganisatie, projectlocatie, cofinancieren, samenwerking){
-        return axios.post(
-            `http://localhost:8081/match?sector=${sector}&thema=${thema}&typeActiviteit=${subsidialeActiviteit}&budget=${minimaleBedrag}&typeAanvrager=${typeOrganisatie}&projectlocatie=${projectlocatie}&bijdrage=${cofinancieren}&samenwerking=${samenwerking}`
+        return fetch(
+            this.apiEndpoint + `/match?sector=${sector}&thema=${thema}&typeActiviteit=${subsidialeActiviteit}&budget=${minimaleBedrag}&typeAanvrager=${typeOrganisatie}&projectlocatie=${projectlocatie}&bijdrage=${cofinancieren}&samenwerking=${samenwerking}`,
+            {
+                method: "POST"
+            }
         )
     }
 }
