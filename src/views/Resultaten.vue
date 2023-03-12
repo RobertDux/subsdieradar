@@ -4,7 +4,10 @@
 
     <div class="resultaten_box">
 
-      <div id="wrapper">
+
+      <!-- Filter container links van het scherm, is nu tijdelijk weg -->
+
+      <!-- <div id="wrapper">
         <div class="filters">
           <div class="status">
             <p id="title"><b>Match</b></p>
@@ -19,6 +22,7 @@
               <label for="Rood"> Rood</label><br><br>
             </div>
           </div>
+
         </div>
 
         <div class="filters">
@@ -30,22 +34,37 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+
+
+
+
+
+
+
+
+
+      
 
 
       <div id="breed">
         <div class="resultaten">
-          <div class="subsidie" v-for="subsidie in subsidies" v-bind:style= "[subsidie.knockout ? {'background': '#1b154a'} : {'background': '#463c95'}]" :key="subsidie.id">
-            <h3 id="subsidieNaam" @click="subsidiePagina(subsidie)">{{ subsidie.naam }}</h3>
-            <p class="info">
+          <div class="subsidie" v-for="subsidie in subsidies" v-bind:style= "[subsidie.knockout ? {'background': '#463c95'} : {'background': '#463c95'}]" :key="subsidie.id">
+            <h3 id="subsidieNaam" @click="subsidiePagina(subsidie)">{{ subsidie.naam }} <br>
+              
+              <div v-if="subsidie.knockout" class="tooltip">
+              <img class="info-icon" alt="Open link" src="../assets/info_icon_white.png">
+              <span class="tooltiptext">Dit is een knockout.</span>
+            </div>
+               </h3>
+            <div class="info">
               Locatie: {{ subsidie.locatie }}<br>
               Bedrag: €{{ subsidie.subsidiebedrag }}<br>
               Einddatum: {{ subsidie.datum_sluit }}<br>
-            </p><br>
-
+            </div><br>
 
             <div class="matchbutton">
-              <button type="button" class="btn" @click="showModal">
+              <button type="button" class="btn" @click="showModal(subsidie)">
                 <svg viewBox="0 0 80 80" width="80" height="80" id="circle">
                 <circle class="circle" :class="{
                 circleLightGreen: subsidie.matchingPercentage > 85 && subsidie.matchingPercentage <= 100,
@@ -61,76 +80,14 @@
               
             </div>
 
-
-
             
             <div id="appmodal">
               <Modal v-show="isModalVisible" @close="closeModal">
                 <template v-slot:header>Matching details</template>
                 <template v-slot:body>
-
                   <div class="container">
-                  <div class="left-column">
-                    <div class="centered-row">
-                      <svg viewBox="0 0 80 80" width="80" height="80" id="circle">
-                        <circle class="circle" :class="{
-                        circleLightGreen: subsidie.matchingPercentage > 85 && subsidie.matchingPercentage <= 100,
-                        circleGreen: subsidie.matchingPercentage >70 && subsidie.matchingPercentage <= 85,
-                        circleLightOrange: subsidie.matchingPercentage > 50 && subsidie.matchingPercentage <= 70,
-                        circleOrange: subsidie.matchingPercentage > 40 && subsidie.matchingPercentage <= 50,
-                        circleLightRed: subsidie.matchingPercentage > 15 && subsidie.matchingPercentage <= 40,
-                        circleRed: subsidie.matchingPercentage > 0 && subsidie.matchingPercentage <= 15,
-                      }" cx="40" cy="40" r="38"/>
-                        {{ subsidie.matchingPercentage }}
-                        </svg>
-                    </div>
-                  </div>
-                  <div class="right-column">
-                    <div>
-                      <p class="info">
-                        Matching: {{ subsidie.matchingPercentage }}</p>
-                    </div>
-                    
-                    <div>
-                      <p class="info">
-                        Doel: {{ subsidie.doel }}</p>
-                    </div>
-
-                    <div>
-                      <p class="info">
-                        Locatie: {{ subsidie.locatie }}</p>
-                    </div>
-
-                    <div>
-                      <p class="info">
-                        Looptijd: {{ subsidie.looptijdProject }}</p>
-                    </div>
-
-                    <div>
-                      <p class="info">
-                        niveau: {{ subsidie.niveau }}</p>
-                    </div>
-
-                    <div>
-                      <p class="info">
-                        Sector: {{ subsidie.sector }}</p>
-                    </div>
-
-                    <div>
-                      <p class="info">
-                        Subsidie percentage: {{ subsidie.subsidiepercentage }}</p>
-                    </div>
-
-                    <div>
-                      <p class="info">
-                        Themas: {{ subsidie.themas }}</p>
-                    </div>
-
-                    
-                  </div>
+                    <img src="../assets/tempmatching.png" alt="">
                 </div>
-
-                   {{ subsidie.knockout }}
                 </template>
 
               </Modal>
@@ -139,7 +96,7 @@
 
 
             <div class="twobuttons">
-                <button class="bekijkbutton">
+                <button class="bekijkbutton" @click="deleteEvent(subsidie)">
                   Verberg
                 </button>
 
@@ -182,6 +139,9 @@ export default {
     showModal() {
       this.isModalVisible = true;
     },
+    deleteEvent: function(subsidie) {
+      this.subsidies.splice(this.subsidies.indexOf(subsidie), 1);
+    },
     closeModal() {
       this.isModalVisible = false;
     },
@@ -214,6 +174,8 @@ export default {
     this.getSubsidies();
   },
 }
+
+
 </script>
 
 <style scoped>
@@ -242,7 +204,7 @@ main {
   display: flex;
   flex-direction: column;
   padding-bottom: 50px;
-  margin-top: 13vh; /* nav min-height = 10vh, dus altijd 3vh afstand van nav nu */
+  margin-top: 130px;
   margin-left: auto;
   margin-right: auto;
   background: rgba(70, 60, 149, 0.15);
@@ -306,6 +268,12 @@ main .header {
   text-align: center;
   box-shadow: 0 6px 12px rgb(27 35 43 / 8%), 0 2px 6px rgb(27 35 43 / 20%);
   font-weight: bold;
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.bekijkbutton:hover {
+  opacity: 0.8;
 }
 
 .matchbutton {
@@ -499,5 +467,40 @@ input[type=checkbox]:checked + label:before {
   font-weight: 500;
 }
 
+.tooltip {
+  position: relative;
+}
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 250px;
+  background-color: white !important;
+  color: black;
+  text-align: left;
+  padding: 20px;
+  font-size: 2vh;
+  box-shadow: 1px 2px 9px darkgrey;
+  margin-left: 1%;
+  background: rgba(255, 255, 255, 0.47);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.2px);
+  -webkit-backdrop-filter: blur(11.2px);
+  border: 1px solid rgba(255, 255, 255, 1);
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 100;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
+.info-icon {
+  width: 5%;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+}
 </style>
