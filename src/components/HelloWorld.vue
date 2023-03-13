@@ -18,6 +18,8 @@
       </div>
 
       <div class="carouselwrapper">
+        <div class="carouselouter">
+
         <div class="carouselcard" style="--delay:-1;">
           <div class="carouselcontent">
             <div class="carouselimg"><img src="../assets/step1.png" alt=""></div>
@@ -66,7 +68,7 @@
           </div>
         </div>
 
-        <div class="carouselcard" style="--delay:3;">
+        <div class="carouselcard" style="--delay:2;">
           <div class="carouselcontent">
             <div class="carouselimg"><img src="../assets/step5.png" alt=""></div>
             <div class="carouseldetails">
@@ -79,6 +81,16 @@
         </div>
       </div>
     </div>
+    </div>
+
+
+
+      <div class="carouseltitle2">
+        <h1>Klaar om te beginnen?</h1>
+      </div>
+    <a class="button2" href="/form">
+            START NU
+        </a>
 
   <section class="reviews">
       <h1>RECENSIES</h1>
@@ -138,8 +150,7 @@
     <div class="column">
       <h3>ADVIESBUREAU</h3>
       <p>Haute Equipe</p>
-      <p>PwC</p>
-      <p>BCO</p>
+      <p>WE Labs</p>
     </div>
     <div class="column">
       <img src="../assets/newlogo-black.png" alt="Website Logo">
@@ -179,9 +190,28 @@ export default {
   align-items: center;
 }
 
+.carouseltitle2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.carouselwrapper .carouselouter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .carouseltitle h1 {
   font-weight: bold;
 }
+
+.carouseltitle2 h1 {
+  font-weight: bold;
+}
+
 
 .carouselwrapper {
   display: flex;
@@ -192,7 +222,7 @@ export default {
 
 .carouselwrapper .carouselcard {
   background: white;
-  width: 730px;
+  width: 630px;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -287,11 +317,39 @@ align-items: center;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   padding: 20px;
+  transition: 0.3s;
+  opacity: 1;
 }
 
 .button:hover {
   cursor:pointer;
-  background-color: #463c95;
+  opacity: 0.9;
+}
+
+.button2 {
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: #3b2f94;;
+  max-width: 25%;
+  border-radius: var(--default-border-radius);
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+  color: white;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap; /* zodat button text altijd op 1 regel blijft met kleinere schermen */
+  transition: 0.3s;
+  opacity: 1;
+}
+
+.button2:hover {
+  cursor:pointer;
+  opacity: 0.9;
 }
 
 h3 {
@@ -348,8 +406,8 @@ main .header {
 
 main .header img {
   margin-bottom: 20px;
-  margin-top: 100px;
-  width: 80%;
+  margin-top: 50px;
+  width: 40%;
 }
 
 main .header .about-button {
@@ -364,6 +422,12 @@ main .header .about-button {
   left: 40px; /* 20px voor main padding + 20px over de rand heen */
   margin-left: auto;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+  transition: 0.3s
+}
+
+main .header .about-button:hover {
+  opacity: 0.9;
 }
 
 main .button {

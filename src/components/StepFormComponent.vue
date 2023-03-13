@@ -1,4 +1,6 @@
 <template>
+  <div class="outer">
+
     <div id="progress-bar">
 <!--      <div :style="{ width: progress + '%' }" id="progress"></div>-->
       <ul class="progress-bar">
@@ -12,6 +14,7 @@
         <li class="samenwerking-li"></li>
       </ul>
     </div>
+    </div>
 
     
     <!-- <br><br>
@@ -21,7 +24,8 @@
       <h3 for="sectorr">1. In welke sector werkt u?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">Een sector is een onderdeel van maatschappij waarbinnen meerdere typen bedrijven en typen organisatie vallen. Die organisatie en bedrijven zijn een groep die afbranchen van een bepaalde circle met dezelfde doelen en keuzes.</span>
+          <span class="tooltiptext">Bedoelt is de maatschappelijke of bedijfssector waarbinnen het project valt, waarvoor
+subsidie is gewenst.</span>
         </div>
       </h3>
       <select v-model="sector" id="sectorr" class="select">
@@ -59,7 +63,8 @@
       <h3>2. Onder welke thema valt uw project?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">Een thema is een klein deel die binnen de sector valt. Een sector is een groot gedeelte, en thema’s delen dat grote thema op in kleinere gedeeltes.</span>
+          <span class="tooltiptext">Het beleidsdoel of -onderwerp waarvoor maatschappelijke vernieuwing, technische of
+procesmatige innovatie benodigd is.</span>
         </div>
       </h3>
       <select v-model="thema" class="select">
@@ -231,7 +236,8 @@
       <h3>3. Wat is het uw subsidiale activiteit?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">Bij activiteit laat je zien wat je binnen de thema doet. Elke thema heeft dezelfde of andere activiteiten en niet elke activiteit is evenveel subsidieerbaar.</span>
+          <span class="tooltiptext">Waaronder vallen de activiteiten in hoofdlijnen, die gedurende het project worden
+uitgevoerd.</span>
         </div>
       </h3>
       <select v-model="subsidialeActiviteit" class="select">
@@ -257,7 +263,8 @@
       <h3>4. Wat is het minimaal benodigd subsidiebedrag?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">Bij minimaal subsidiebedrag vul je in hoeveel je minimaal wilt krijgen voor je gekozen subsidie. Het kan meer zijn maar niet minder.</span>
+          <span class="tooltiptext">Wat is het minimaal beoogde budget (inclusief eigen bijdrage) dat benodigd is om het
+beoogde project te voltooien.</span>
         </div>
       </h3>
       
@@ -278,7 +285,7 @@
       <h3>5. Wat voor type organistatie bent u?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">Type organisatie; zie opties</span>
+          <span class="tooltiptext">Onder welk type organisatie valt de hoofdaanvrager van de subsidie.</span>
         </div>
       </h3>
       <select v-model="typeOrganisatie" class="select">
@@ -306,7 +313,8 @@
       <h3>6. Wat is de projectlocatie?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">De locatie waar het project zich plaatsvindt</span>
+          <span class="tooltiptext">Wat is de vestigingslocatie van de aanvragende partij (gemeente = provinciaal) of coalitie
+(nationaal of europees).</span>
         </div>
       </h3>
       <select v-model="projectlocatie" class="select">
@@ -331,7 +339,8 @@
       <h3>7. Kunt u cofinancieren?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">Cofinancieren houdt in dat niet alleen de subsidiegever betaalt, maar ook het bedrijf/persoon die de subsidie aanvraagt.</span>
+          <span class="tooltiptext">Bij de meeste regelingen is co-financiering vereist, wat betekent dat aanvrager een deel van
+het benodigde projectbudget meebetaalt (30 - 60%).</span>
         </div>
       </h3>
       <input type="checkbox" class="select" id="checkbox" v-model="cofinancieren"/>
@@ -348,7 +357,7 @@
       <h3>8. Wat is het type samenwerking?
         <div class="tooltip">
           <img class="info-icon" alt="Open link" src="../assets/info_icon.png">
-          <span class="tooltiptext">Type samenwerking; zie opties</span>
+          <span class="tooltiptext">Welke coalitie / samenwerkingsverband zal de subsidie aanvragen.</span>
         </div>
       </h3>
       <select v-model="samenwerking" class="select">
@@ -507,6 +516,14 @@ export default {
 }
 </script>
 <style scoped>
+
+.outer {
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .tooltip {
   display: inline;
 }
@@ -610,6 +627,8 @@ section {
   display: inline-block;
   font-size: 16px;
   margin: 20px;
+  opacity: 1;
+  transition: 0.3s;
 }
 .btn-prev {
   width: 243px;
@@ -620,10 +639,12 @@ section {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   color: white;
+  opacity: 1;
+  transition: 0.3s;
 }
 .btn-prev:hover {
   cursor: pointer;
-  background-color: #6c9fc4;
+  opacity: 0.9;
 }
 .btn-next {
   width: 243px;
@@ -634,13 +655,15 @@ section {
   color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  opacity: 1;
+  transition: 0.3s;
 }
 .btn-next:hover {
   cursor: pointer;
-  background-color: #6c9fc4;
+  opacity: 0.9;
 }
 #progress-bar {
-  width: 90%;
+  width: 77%;
 }
 .progress-bar{
   display:flex;
@@ -729,11 +752,11 @@ progress-bar li:before{
 }
 .btn-prev:hover {
   cursor: pointer;
-  background-color: #3b2f94;
+  opacity: 0.9;
 }
 .btn-next:hover {
   cursor: pointer;
-  background-color: #3b2f94;
+  opacity: 0.9;
 }
 .btn-skip {
   background-color: white;
@@ -741,9 +764,12 @@ progress-bar li:before{
   border-radius: 10px;
   width: 243px;
   height: 47px;
+  opacity: 1;
+  transition: 0.3s;
 }
 .btn-skip:hover {
   cursor: pointer;
   background-color: #eeeeee;
+  opacity: 0.9;
 }
 </style>

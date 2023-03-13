@@ -9,6 +9,7 @@
     <div id="info">
       <div class="informatie_titel">
         <h2>Informatie</h2>
+
       </div>
       
       <div id="links">
@@ -28,10 +29,8 @@
           {{datum_open}}<br>
           N.v.t.
         </p>
+        <button id="aanvraag" onclick="window.open('https://haute-equipe.nl/');">Vraag nu aan</button>
       </div>
-
-        <button id="aanvraag">Vraag nu aan</button>
- 
       
     </div>
 
@@ -124,7 +123,7 @@ main {
   width: 90%;
   height: 80vh;
   padding-bottom: 50px;
-  margin-top: 13vh; /* nav min-height = 10vh, dus altijd 3vh afstand van nav nu */
+  margin-top: 130px;
   margin-left: auto;
   margin-right: auto;
   background: rgba(70, 60, 149, 0.15);
@@ -152,10 +151,13 @@ main {
   font-size: 16px;
   margin-left: 5%;
   margin-top: 10px;
+  opacity: 1;
+  transition: 0.3s;
 
 }
 #terugbutton:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 #aanvraag {
@@ -168,13 +170,17 @@ main {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin-top: 80%;
-  width: 100%;
+  position: absolute;
+  bottom: 150px;
+  left: 120px;
+  width: 23%;
+  opacity: 1;
+  transition: 0.3s;
 }
 
 #aanvraag:hover {
   cursor: pointer;
-  background-color: #463c95;
+  opacity: 0.8;
 }
 
 .ppLeft {

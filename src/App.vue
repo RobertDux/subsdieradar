@@ -7,8 +7,8 @@
                 <a href="../"><img src="../src/assets/newlogo-black.png" alt="logo" /></a>
             </li>
             <div class="middlenav">
-              <i class="fa fa-search" style="font-size: 22px; margin-right: -20px"></i>
-              <li><input type="text" placeholder="Zoeken..."></li>
+              <!-- <i class="fa fa-search" style="font-size: 22px; margin-right: -20px"></i>
+              <li><input type="text" placeholder="Zoeken..."></li> -->
               <li><a><router-link to="/form">Zoekopdrachten</router-link></a></li>
               <li><a><router-link to="/resultaten">Subsidie</router-link></a></li>
               <li><a href="/profile">Bedrijfsportaal</a></li>
@@ -26,6 +26,7 @@
 html {
   box-sizing: border-box;
   font-size: 16px;
+  overflow-x: hidden;
 }*,
 *:before,
 *:after {
@@ -54,7 +55,7 @@ ul {
 
 .middlenav {
   display: flex;
-  padding: 20px;
+  padding: 20px 50px 20px 50px;
   flex-direction: row;
   align-items: center;
   gap: 24px;
@@ -72,6 +73,16 @@ ul {
   width: 100%;
   border-radius: 30px;
 }
+
+.middlenav a {
+  opacity: 1;
+  transition: 0.3s;
+}
+
+.middlenav a:hover {
+  opacity: 0.7;
+}
+
 
 
 img {

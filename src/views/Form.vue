@@ -34,12 +34,11 @@ main {
   background: ;
   border-radius: var(--default-border-radius);
   width: 90%;
-  height: 80vh;
+  height: 75vh;
   padding-bottom: 50px;
   margin-top: 13vh; /* nav min-height = 10vh, dus altijd 3vh afstand van nav nu */
   margin-left: auto;
   margin-right: auto;
-  
   background: rgba(70, 60, 149, 0.15);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(1px);
@@ -87,7 +86,6 @@ main .progress {
 main .header {
   padding: 50px;
   width: 90%;
-  background: ;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -95,6 +93,7 @@ main .header {
   align-items: center;
   flex-direction: column;
   text-align: center;
+  margin-top: 130px;
 }
 
 main .button {
